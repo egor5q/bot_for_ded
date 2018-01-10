@@ -18,13 +18,13 @@ def spamon(message):
   t=threading.Timer(1.5, spamon, args=[message])
   t.start()
   for id in groups:
-   if id!=185023717 and id!=441399484:
+   if id!=185023717 and id!=441399484 and id!=180151628:
     bot.send_message(id, message)
     
                      
 @bot.message_handler(commands=['spam'])
 def spam(m):
-  if m.from_user.id==185023717 or m.from_user.id==441399484:
+  if m.from_user.id==185023717 or m.from_user.id==441399484 or m.from_user.id==180151628:
    global alreadyspam
    if alreadyspam==0:
     z=len(m.text)
@@ -39,7 +39,7 @@ def spam(m):
     
 @bot.message_handler(commands=['off'])
 def off(m):
-  if m.from_user.id==185023717 or m.from_user.id==441399484:
+  if m.from_user.id==185023717 or m.from_user.id==441399484 or m.from_user.id==180151628:
     global alreadyspam
     alreadyspam=0
   else:
