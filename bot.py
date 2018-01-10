@@ -12,9 +12,10 @@ from emoji import emojize
 token = os.environ['TELEGRAM_TOKEN']
 bot = telebot.TeleBot(token)
 groups=[]
-global alreadyspam=0
+alreadyspam=0
 
 def spamon(message):
+ global alreadyspam
  if alreadyspam==1:
   t=threading.Timer(1.5, spamon, args=[message])
   t.start()
@@ -26,16 +27,18 @@ def spamon(message):
 @bot.message_handler(commands=['spam'])
 def spam(m):
   if m.from_user.id==185023717 or m.from_user.id==441399484:
+   global alreadyspam
    if alreadyspam==0:
     z=len(m.text)
     message=m.text[4:z]
-    global alreadyspam=1
+    alreadyspam=1
     spamon(message)
     
 @bot.message_handler(commands=['off'])
 def off(m):
   if m.from_user.id==185023717 or m.from_user.id==441399484:
-    global alreadyspam=0
+    global alreadyspam
+    alreadyspam=0
 
 @bot.message_handler(content_types=['text'])
 def add(m):
