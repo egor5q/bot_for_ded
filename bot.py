@@ -28,7 +28,7 @@ def spam(m):
   if m.from_user.id==185023717 or m.from_user.id==441399484:
    if alreadyspam==0:
     z=len(m.text)
-    message=[(z-4):]
+    message=m.text[4:z]
     global alreadyspam=1
     spamon(message)
     
