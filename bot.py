@@ -15,7 +15,7 @@ groups=[]
 alreadyspam=0
 
 def spamon(message):
- if global alreadyspam==1:
+ if alreadyspam==1:
   t=threading.Timer(1.5, spamon, args=[message])
   t.start()
   for id in groups:
@@ -26,7 +26,7 @@ def spamon(message):
 @bot.message_handler(commands=['spam'])
 def spam(m):
   if m.from_user.id==185023717 or m.from_user.id==441399484:
-   if global alreadyspam==0:
+   if alreadyspam==0:
     z=len(m.text)
     message=[(z-4):]
     global alreadyspam=1
