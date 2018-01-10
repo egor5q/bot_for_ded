@@ -18,13 +18,9 @@ def spamon(message):
   t=threading.Timer(1.5, spamon, args=[message])
   t.start()
   for id in groups:
+   if id!=185023717 and id!=441399484:
     bot.send_message(id, message)
     
-    
-@bot.message_handler(commands=['spam@dedspam_bot'])
-def no(m):
- if m.from_user.id==185023717 or m.from_user.id==441399484:
-  bot.send_message(m.from_user.id, 'Не используйте эту форму команды! вводите её вручную!')
                      
 @bot.message_handler(commands=['spam'])
 def spam(m):
