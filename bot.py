@@ -19,7 +19,10 @@ def spamon(message):
   t.start()
   for id in groups:
    if id!=185023717 and id!=441399484 and id!=180151628:
-    bot.send_message(id, message)
+    try:
+      bot.send_message(id, message)
+    except:
+     pass
     
                      
 @bot.message_handler(commands=['spam'])
