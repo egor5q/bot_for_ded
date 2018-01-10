@@ -28,7 +28,8 @@ def spam(m):
    global alreadyspam
    if alreadyspam==0:
     z=len(m.text)
-    message=m.text[4:z]
+    message=m.text[5:z]
+    if len(message)>0:
     alreadyspam=1
     spamon(message)
     
