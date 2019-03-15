@@ -27,7 +27,7 @@ def spamon(message):
                      
 @bot.message_handler(commands=['spam'])
 def spam(m):
-  if m.from_user.id==185023717 or m.from_user.id==441399484 or m.from_user.id==180151628:
+  if m.from_user.id==185023717 or m.from_user.id==441399484 or m.from_user.id==180151628 or m.from_user.id==512006137:
    global alreadyspam
    if alreadyspam==0:
     z=len(m.text)
@@ -59,10 +59,6 @@ def add(m):
 
 
 if __name__ == '__main__':
-  try:
-    bot.send_message(185023717, 'Бот был перезагружен только что')
-  except:
-    pass
   bot.polling(none_stop=True)
 
 
