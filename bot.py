@@ -10,56 +10,58 @@ from emoji import emojize
 token = os.environ['TELEGRAM_TOKEN']
 bot = telebot.TeleBot(token)
 groups=[]
-alreadyspam=0
+stopp=0
+admins=[441399484, 512006137]
 
-def spamon(message):
- global alreadyspam
- if alreadyspam==1:
-  t=threading.Timer(1.5, spamon, args=[message])
-  t.start()
-  for id in groups:
-   if id!=185023717 and id!=441399484 and id!=180151628:
-    try:
-      bot.send_message(id, message)
-    except:
-     pass
+def spamon(message, group):
+    global stopp
+    if stopp!=1:
+        bot.send_message(group, message)
+        spamon(message, group)
+    else:
+       bot.send_message(group, 'Спам остановлен ебать')
     
-                     
+@bot.message_handler(commands=['stop'])
+def stopppp(m):
+    if m.from_user.id in admins:
+        global stopp
+        stopp=1
+        bot.send_message(m.chat.id, 'Остановил спам во всех чатах ебать')
+        
+@bot.message_handler(commands=['start'])
+def stopppp(m):
+    if m.from_user.id in admins:
+        global stopp
+        stopp=0
+        bot.send_message(m.chat.id, 'Разрешил спам во всех чатах ебать')
+    
 @bot.message_handler(commands=['spam'])
 def spam(m):
-  if m.from_user.id==185023717 or m.from_user.id==441399484 or m.from_user.id==180151628 or m.from_user.id==512006137:
-   global alreadyspam
-   if alreadyspam==0:
-    z=len(m.text)
-    message=m.text[5:z]
-    if len(message)>0:
-      alreadyspam=1
-      spamon(message)
-    else:
-     bot.send_message(m.from_user.id, 'Введите что-нибудь после команды!')
-  else:
-   bot.send_message(m.chat.id, 'Только дед имеет право включать спам!')
+    try:
+        if m.from_user.id in admins:
+            msg=m.text.split('/spam')[1]
+            spamon(msg, m.chat.id)
+    except:
+        bot.send_message(m.chat.id, 'Ты долбоеб ебаный')
     
-@bot.message_handler(commands=['off'])
-def off(m):
-  if m.from_user.id==185023717 or m.from_user.id==441399484 or m.from_user.id==180151628:
-    global alreadyspam
-    alreadyspam=0
-  else:
-   bot.send_message(m.chat.id, 'Только дед имеет право выключать спам!')
-
-@bot.message_handler(content_types=['text'])
-def add(m):
-  if m.chat.id not in groups:
-    groups.append(m.chat.id)
+    
 
 
 
 
+def poll():
+    try:
+        bot.polling(none_stop=True)
+    except:
+        try:
+            bot.stop_polling()
+        except:
+            pass
+        poll()
 
-
-if __name__ == '__main__':
-  bot.polling(none_stop=True)
+        
+        
+poll()
 
 
 
