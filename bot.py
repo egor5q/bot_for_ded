@@ -16,7 +16,11 @@ admins=[441399484, 512006137]
 def spamon(message, group):
     global stopp
     if stopp!=1:
-        bot.send_message(group, message)
+        msg=bot.send_message(group, message)
+        try:
+            bot.pin_chat_message(group, msg.message_id, disable_notification=False)
+        except:
+            pass
         spamon(message, group)
     else:
        bot.send_message(group, 'Спам остановлен ебать')
