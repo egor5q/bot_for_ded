@@ -17,10 +17,7 @@ def spamon(message, group):
     global stopp
     if stopp!=1:
         msg=bot.send_message(group, message)
-        try:
-            bot.pin_chat_message(group, msg.message_id, disable_notification=False)
-        except:
-            pass
+        bot.pin_chat_message(msg.chat.id, msg.message_id)
         spamon(message, group)
     else:
        bot.send_message(group, 'Спам остановлен ебать')
