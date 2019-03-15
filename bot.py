@@ -17,7 +17,10 @@ def spamon(message, group):
     global stopp
     if stopp!=1:
         msg=bot.send_message(group, message)
-        bot.pin_chat_message(msg.chat.id, msg.message_id)
+        try:
+            bot.pin_chat_message(msg.chat.id, msg.message_id)
+        except:
+            pass
         spamon(message, group)
     else:
        bot.send_message(group, 'Спам остановлен ебать')
@@ -38,12 +41,12 @@ def stopppp(m):
     
 @bot.message_handler(commands=['spam'])
 def spam(m):
-    #try:
+    try:
         if m.from_user.id in admins:
             msg=m.text.split('/spam')[1]
             spamon(msg, m.chat.id)
-    #except:
-    #    bot.send_message(m.chat.id, 'Ты долбоеб ебаный')
+    except:
+        bot.send_message(m.chat.id, 'Ты долбоеб ебаный')
     
     
 
