@@ -38,7 +38,7 @@ def stopppp(m):
         stopp=0
         bot.send_message(m.chat.id, 'Разрешил спам во всех чатах ебать')
     
-@bot.message_handler(comman ds=['spam'])
+@bot.message_handler(commands=['spam'])
 def spam(m):
     try:
         msg=m.text.split('/spam')[1]
