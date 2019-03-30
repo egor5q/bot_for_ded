@@ -38,12 +38,11 @@ def stopppp(m):
         stopp=0
         bot.send_message(m.chat.id, 'Разрешил спам во всех чатах ебать')
     
-@bot.message_handler(commands=['spam'])
+@bot.message_handler(comman ds=['spam'])
 def spam(m):
     try:
-        if m.from_user.id in admins:
-            msg=m.text.split('/spam')[1]
-            spamon(msg, m.chat.id)
+        msg=m.text.split('/spam')[1]
+        spamon(msg, m.chat.id)
     except:
         bot.send_message(m.chat.id, 'Ты долбоеб ебаный')
     
