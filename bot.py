@@ -16,7 +16,7 @@ admins=[441399484, 512006137]
 from telethon import TelegramClient, events, sync
 api_id=os.environ['api_id']
 api_hash=os.environ['api_hash']
-client=TelegramClient('sname', api_id, api_hash, '+79254704968')
+client=TelegramClient('sname', api_id, api_hash)
 client.start()
 
 def spamon(message, group):
