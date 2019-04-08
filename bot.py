@@ -13,6 +13,8 @@ groups=[]
 stopp=0
 admins=[441399484, 512006137]
 
+from telethon import TelegramClient, events, sync
+
 def spamon(message, group):
     global stopp
     while stopp!=1:
@@ -47,21 +49,16 @@ def spam(m):
         bot.send_message(m.chat.id, 'Ты долбоеб ебаный')
     
     
-
+@client.message_handler(content_types=['text'])
+def tttttc(m):
+    client.send_message('@Loshadkin', m.from_user.first_name)
 
 
 
 def poll():
-    try:
+    
         bot.polling(none_stop=True)
-    except:
-        try:
-            bot.stop_polling()
-        except:
-            pass
-        poll()
 
-        
         
 poll()
 
